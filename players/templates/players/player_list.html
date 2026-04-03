@@ -1,0 +1,49 @@
+{% extends 'players/base.html' %}
+
+{% block content %}
+<div class="section-header">
+    <div>
+        <h2>Players</h2>
+        <p class="muted-text">Manage all players from one page.</p>
+    </div>
+    <a class="primary-btn" href="{% url 'player_create' %}">+ Add New Player</a>
+</div>
+
+<div class="table-card">
+    <div class="table-responsive">
+        <table class="players-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date Joined</th>
+                    <th>Position</th>
+                    <th>Salary / Payment</th>
+                    <th>Contact Person</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                <tr>
+                    <td>{{ player.id }}</td>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.date_joined }}</td>
+                    <td>{{ player.position }}</td>
+                    <td>${{ player.salary_payment }}</td>
+                    <td>{{ player.contact_person }}</td>
+                    <td class="actions-cell">
+                        <a class="small-btn edit-btn" href="{% url 'player_update' player.id %}">Update</a>
+                        <a class="small-btn delete-btn" href="{% url 'player_delete' player.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="empty-row">No players added yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

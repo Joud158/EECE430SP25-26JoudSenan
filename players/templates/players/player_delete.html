@@ -1,0 +1,23 @@
+{% extends 'players/base.html' %}
+
+{% block content %}
+<div class="form-card narrow-card">
+    <div class="section-header single">
+        <div>
+            <h2>Delete Player</h2>
+            <p class="muted-text">Please confirm before removing this record.</p>
+        </div>
+    </div>
+
+    <div class="delete-box">
+        <p>Are you sure you want to delete <strong>{{ player.name }}</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="button-row">
+                <button type="submit" class="danger-btn">Yes, Delete</button>
+                <a href="{% url 'player_list' %}" class="secondary-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

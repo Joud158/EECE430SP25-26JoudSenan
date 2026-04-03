@@ -1,0 +1,31 @@
+{% extends 'players/base.html' %}
+
+{% block content %}
+<div class="form-card narrow-card">
+    <div class="section-header single">
+        <div>
+            <h2>{{ title }}</h2>
+            <p class="muted-text">Fill in the required player details.</p>
+        </div>
+    </div>
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="field-error">{{ field.errors|striptags }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="button-row">
+            <button type="submit" class="primary-btn">Save</button>
+            <a href="{% url 'player_list' %}" class="secondary-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

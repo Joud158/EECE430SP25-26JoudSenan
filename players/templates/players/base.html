@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volley Player List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'players/style.css' %}">
+</head>
+<body>
+    <div class="page-bg"></div>
+
+    <div class="page-wrapper">
+        <div class="hero-panel">
+            <div class="hero-pattern"></div>
+            <div class="hero-wave"></div>
+            <div class="hero-content">
+                <h1>Volley Player List</h1>
+                <p>This is a simple frontend and backend app to add, view, update, and delete volleyball players.</p>
+            </div>
+        </div>
+
+        <div class="content-card">
+            {% if messages %}
+                <div class="messages-area">
+                    {% for message in messages %}
+                        <div class="alert-message {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>
